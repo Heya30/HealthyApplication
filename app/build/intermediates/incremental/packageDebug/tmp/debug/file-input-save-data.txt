@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Jun 28 16:33:37 CST 2020
+#Thu Jul 02 20:32:24 CST 2020
 1.base=E\:\\HealthApplication\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out
 2.path=classes.dex
 0.baseType=DIRECTORY

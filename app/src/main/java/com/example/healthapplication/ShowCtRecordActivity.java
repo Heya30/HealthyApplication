@@ -89,6 +89,7 @@ public class ShowCtRecordActivity extends AppCompatActivity implements HttpCallb
 
 
                 intent.putExtra("choice",1);
+                intent.putExtra("time",2);
                 intent.putExtra("img", judgeRecord.getPicture_url());
                 intent.putExtra("answer", judgeRecord.getAnswer());
                 startActivity(intent);

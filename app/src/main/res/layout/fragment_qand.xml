@@ -29,7 +29,7 @@
                 android:id = "@+id/title"
                 app:layout_collapseMode="parallax"
                 android:scaleType = "centerCrop"
-                android:src="@drawable/head1"
+                android:src="@drawable/head5"
 
                 />
 

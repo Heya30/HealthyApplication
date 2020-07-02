@@ -48,7 +48,7 @@ public class QandAFragment extends Fragment implements HttpCallbackListener {
     private AnswerQAdapter adapter;
     private FloatingActionButton question;
     private List<AnswerReport> reportList = new ArrayList<>();
-    private int page = 1;
+    private int page = 0;
     public  static  final int ADDRECORD = 1;
     public QandAFragment() {}
 

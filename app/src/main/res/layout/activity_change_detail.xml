@@ -46,6 +46,7 @@
         android:layout_margin="10dp"
         android:id="@+id/edit"
         android:padding="5dp"
+        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="输入……"
