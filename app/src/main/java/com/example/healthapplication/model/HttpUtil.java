@@ -4,7 +4,11 @@ package com.example.healthapplication.model;
 import java.io.*;
 import java.util.Iterator;
 import java.util.Map;
+public class HttpUtil{
 
+
+
+}
 
 
 

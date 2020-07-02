@@ -48,7 +48,7 @@
         android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="输入新的密码……"
+        android:hint="输入……"
         android:textColorHint="#000000"/>
     </LinearLayout>
 

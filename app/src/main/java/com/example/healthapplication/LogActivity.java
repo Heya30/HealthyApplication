@@ -1,13 +1,9 @@
 package com.example.healthapplication;
 
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -25,28 +21,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.healthapplication.model.User;
+import com.example.healthapplication.model.HttpCallbackListener;
+import com.example.healthapplication.model.HttpUser;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
-public class LogActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, ViewTreeObserver.OnGlobalLayoutListener, TextWatcher {
-
-    private String TAG = "ifu25";
+public class LogActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, ViewTreeObserver.OnGlobalLayoutListener, TextWatcher, HttpCallbackListener {
 
     private ImageButton mIbNavigationBack;
-    private LinearLayout mLlLoginPull;
-    private View mLlLoginLayer;
-    private LinearLayout mLlLoginOptions;
     private EditText mEtLoginUsername;
     private EditText mEtLoginPwd;
     private LinearLayout mLlLoginUsername;
@@ -59,11 +39,10 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     private TextView mTvLoginForgetPwd;
     private Button mBtLoginRegister;
 
-    //全局Toast
-    private Toast mToast;
-
     private int mLogoHeight;
     private int mLogoWidth;
+
+    private HttpUser httpUser = HttpUser.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +54,6 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
     //初始化视图
     private void initView() {
-        //登录层、下拉层、其它登录方式层
-//        mLlLoginLayer = findViewById(R.id.ll_login_layer);
-//        mLlLoginPull = findViewById(R.id.ll_login_pull);
-//        mLlLoginOptions = findViewById(R.id.ll_login_options);
-
         //导航栏+返回按钮
         mLayBackBar = findViewById(R.id.ly_retrieve_bar);
         mIbNavigationBack = findViewById(R.id.ib_navigation_back);
@@ -106,7 +80,6 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         mTvLoginForgetPwd.setOnClickListener(this);
 
         //注册点击事件
-//        mLlLoginPull.setOnClickListener(this);
         mIbNavigationBack.setOnClickListener(this);
         mEtLoginUsername.setOnClickListener(this);
         mIvLoginUsernameDel.setOnClickListener(this);
@@ -114,9 +87,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         mBtLoginRegister.setOnClickListener(this);
         mEtLoginPwd.setOnClickListener(this);
         mIvLoginPwdDel.setOnClickListener(this);
-//        findViewById(R.id.ib_login_weibo).setOnClickListener(this);
-//        findViewById(R.id.ib_login_qq).setOnClickListener(this);
-//        findViewById(R.id.ib_login_wx).setOnClickListener(this);
+
 
         //注册其它事件
         mLayBackBar.getViewTreeObserver().addOnGlobalLayoutListener(this);
@@ -164,35 +135,13 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                 //忘记密码
                 startActivity(new Intent(LogActivity.this, ForgetPwdActivity.class));
                 break;
-//            case R.id.ll_login_layer:
-//            case R.id.ll_login_pull:
-//                mLlLoginPull.animate().cancel();
-//                mLlLoginLayer.animate().cancel();
-//
-//                int height = mLlLoginOptions.getHeight();
-//                float progress = (mLlLoginLayer.getTag() != null && mLlLoginLayer.getTag() instanceof Float) ? (float) mLlLoginLayer.getTag() : 1;
-//                int time = (int) (360 * progress);
-//
-//                if (mLlLoginPull.getTag() != null) {
-//                    mLlLoginPull.setTag(null);
-//                    glide(height, progress, time);
-//                } else {
-//                    mLlLoginPull.setTag(true);
-//                    upGlide(height, progress, time);
-//                }
-//                break;
-//            case R.id.ib_login_weibo:
-//                weiboLogin();
-//                break;
-//            case R.id.ib_login_qq:
-//                qqLogin();
-//                break;
-//            case R.id.ib_login_wx:
-//                weixinLogin();
-//                break;
             default:
                 break;
         }
+    }
+
+    private void loginRequest(){
+        httpUser.loginRequest(this,mEtLoginUsername.getText().toString(),mEtLoginPwd.getText().toString());
     }
 
     //用户名密码焦点改变
@@ -211,84 +160,6 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                 mLlLoginUsername.setActivated(false);
             }
         }
-    }
-
-    /**
-     * menu glide
-     *
-     * @param height   height
-     * @param progress progress
-     * @param time     time
-     */
-    private void glide(int height, float progress, int time) {
-        mLlLoginPull.animate()
-                .translationYBy(height - height * progress)
-                .translationY(height)
-                .setDuration(time)
-                .start();
-
-        mLlLoginLayer.animate()
-                .alphaBy(1 * progress)
-                .alpha(0)
-                .setDuration(time)
-                .setListener(new AnimatorListenerAdapter() {
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-                        if (animation instanceof ValueAnimator) {
-                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue());
-                        }
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (animation instanceof ValueAnimator) {
-                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue());
-                        }
-                        mLlLoginLayer.setVisibility(View.GONE);
-                    }
-                })
-                .start();
-    }
-
-    /**
-     * menu up glide
-     *
-     * @param height   height
-     * @param progress progress
-     * @param time     time
-     */
-    private void upGlide(int height, float progress, int time) {
-        mLlLoginPull.animate()
-                .translationYBy(height * progress)
-                .translationY(0)
-                .setDuration(time)
-                .start();
-        mLlLoginLayer.animate()
-                .alphaBy(1 - progress)
-                .alpha(1)
-                .setDuration(time)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        mLlLoginLayer.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-                        if (animation instanceof ValueAnimator) {
-                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue());
-                        }
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (animation instanceof ValueAnimator) {
-                            mLlLoginLayer.setTag(((ValueAnimator) animation).getAnimatedValue());
-                        }
-                    }
-                })
-                .start();
     }
 
     //显示或隐藏logo
@@ -396,76 +267,6 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    //登录
-    private void loginRequest() {
-        new Thread(new Runnable() {
-        @Override
-        public void run() {
-            OkHttpClient client = new OkHttpClient();
-            String json = "{\"phone\":" + "\""  + mEtLoginUsername.getText().toString() + "\"" + ",\"password\":" +"\""+mEtLoginPwd.getText().toString()+"\"}";
-            RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8"), json);
-            Request request = new Request.Builder().url("http://47.100.32.161:8080/login").post(requestBody).build();
-            try {
-                Response response = client.newCall(request).execute();
-                String data = response.body().string();
-                JSONObject jsonObject = new JSONObject(data);
-
-                Object dataObject = jsonObject.getJSONObject("data");
-                Log.d("logaa",((JSONObject) dataObject).toString());
-                String s2=dataObject.toString();
-                JSONObject userDataJson = new JSONObject(s2);
 
 
-
-                String code = jsonObject.getString("code");
-                if(Integer.parseInt(code) == 200){
-                    String token = userDataJson.getString("Authorization");
-                    Object userInfoObject = ((JSONObject) dataObject).getJSONObject("userInfo");
-                    String infoString =userInfoObject.toString();
-                    JSONObject infoJson = new JSONObject(infoString);
-
-                    String userName = infoJson.getString("name");
-                    int gender = Integer.parseInt(infoJson.getString("gender"));
-                    String phone = infoJson.getString("phone");
-                    String avatar = infoJson.getString("avatar_url");
-                    int age = Integer.parseInt(infoJson.getString("age"));
-                    User user = User.getInstance(age, gender, avatar, userName, phone, token);
-
-                    Intent intent = new Intent(LogActivity.this,MainActivity.class);
-
-                    startActivity(intent);
-                }else {
-                    Looper.prepare();
-                    showToast(userDataJson.getString("message"));
-                    Looper.loop();
-                }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }).start();
-
-
-    }
-
-
-    /**
-     * 显示Toast
-     *
-     * @param msg 提示信息内容
-     */
-    private void showToast(String msg) {
-        if (null != mToast) {
-            mToast.setText(msg);
-        } else {
-            mToast = Toast.makeText(LogActivity.this, msg, Toast.LENGTH_SHORT);
-        }
-
-        mToast.show();
-    }
 }

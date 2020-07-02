@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.healthapplication.R;
 import com.example.healthapplication.model.AnswerReport;
+import com.example.healthapplication.model.HttpCallbackListener;
 import com.example.healthapplication.model.User;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ import okhttp3.Response;
 
 
 
-public class AnswerAdapter extends BaseAdapter {
+public class AnswerAdapter extends BaseAdapter implements HttpCallbackListener {
 
 
     private int p;
@@ -125,7 +126,7 @@ public class AnswerAdapter extends BaseAdapter {
                             public void run() {
                                 try {
                                     OkHttpClient client = new OkHttpClient();
-                                    String url = "http://47.100.32.161:8080/DELETE/QARecord?id=" + answerList.get(p).getId();
+                                    String url = url_base+"/DELETE/QARecord?id=" + answerList.get(p).getId();
 
                                     Request request = new Request.Builder().url(url)
                                             .addHeader("Authorization", User.getInstance().getToken())

@@ -57,5 +57,5 @@
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:textSize="16dp"
-        android:text="分析结果为：阴性，身体正常，没有患癌症"/>
+        android:text="请耐心等待，分析结果马上就来……"/>
 </LinearLayout>

@@ -8,8 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthapplication.model.HttpCallbackListener;
+import com.example.healthapplication.model.HttpUser;
 import com.example.healthapplication.model.User;
 
 import org.json.JSONException;
@@ -28,27 +31,34 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, HttpCallbackListener {
 
     private EditText phoneEt;
     private EditText passwordEt;
     private EditText authoEt;
     private int code;
+    private HttpUser httpUser = HttpUser.getInstance();
+
+    private TextView sendMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_register_step_one);
 
+        initview();
+    }
+
+    private void initview(){
         findViewById(R.id.ib_navigation_back).setOnClickListener(this);
         findViewById(R.id.bt_register_submit).setOnClickListener(this);
-        findViewById(R.id.tv_register_sms_call).setOnClickListener(this);
+        sendMessage = findViewById(R.id.tv_register_sms_call);
+        sendMessage.setOnClickListener(this);
 
         phoneEt = findViewById(R.id.et_register_phone);
         passwordEt = findViewById(R.id.et_register_pwd);
         authoEt = findViewById(R.id.et_register_auth_code);
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -56,12 +66,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.tv_register_sms_call:
+                sendMessage.setText("已发送");
+//                try {
+//                    httpUser.sendSms(phoneEt.getText().toString());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             OkHttpClient client = new OkHttpClient();
-                            String url = "http://47.100.32.161:8080/sendSms?phone=" + phoneEt.getText().toString();
+                            String url = url_base + "/sendSms?phone=" + phoneEt.getText().toString();
                             Request request = new Request.Builder().url(url).build();
                             Response response = client.newCall(request).execute();
                             String data = response.body().string();
@@ -78,6 +94,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
            break;
             case R.id.bt_register_submit:
+                //httpUser.regist(this,Integer.parseInt(authoEt.getText().toString()),phoneEt.getText().toString(),passwordEt.getText().toString());
+
                 if(code == Integer.parseInt(authoEt.getText().toString())) {
                     new Thread(new Runnable() {
                         @Override
@@ -85,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             OkHttpClient client = new OkHttpClient();
                             String json = "{\"phone\":" + "\"" + phoneEt.getText().toString() + "\"" + ",\"password\":" + "\"" + passwordEt.getText().toString() + "\"}";
                             RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8"), json);
-                            Request request = new Request.Builder().url("http://47.100.32.161:8080/signIn").post(requestBody).build();
+                            Request request = new Request.Builder().url(url_base+"/signIn").post(requestBody).build();
                             try {
                                 Response response = client.newCall(request).execute();
                                 String data = response.body().string();
@@ -108,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                                 User user = User.getInstance(avatar, userName, phone, token);
 
-                                Intent intent = new Intent(RegisterActivity.this,Register2Activity.class);
+                                Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
 
                                 startActivity(intent);
 

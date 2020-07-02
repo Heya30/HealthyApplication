@@ -59,7 +59,7 @@ public class User {
     }
 
     public String getGender() {
-        if(gender == 0){
+        if(gender == 1){
             return "男";
         }else return "女";
 

@@ -50,8 +50,8 @@ public class AnalyzeFragment extends Fragment {
     private CardView cardViewCancer;
     private CardView bmiCard;
     private CardView bloodCard;
-    private String choice;
-    private final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+    private int choice;
+
 
     public AnalyzeFragment() {
         // Required empty public constructor
@@ -68,25 +68,6 @@ public class AnalyzeFragment extends Fragment {
 
     }
 
-    public static final int RC_CHOOSE_PHOTO = 2;
-
-    private void choosePhoto() {
-        Intent intentToPickPic = new Intent(Intent.ACTION_PICK, null);
-        intentToPickPic.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        startActivityForResult(intentToPickPic, RC_CHOOSE_PHOTO);
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case RC_CHOOSE_PHOTO:   //相册选择照片权限申请返回
-                choosePhoto();
-                break;
-        }
-    }
-
-
 
 
 
@@ -102,7 +83,7 @@ public class AnalyzeFragment extends Fragment {
         cardViewCancer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choice = "淋巴切片诊断结果";
+                choice = 0;
                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     //未授权，申请授权(从相册选择图片需要读取存储卡的权限)
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, RC_CHOOSE_PHOTO);
@@ -116,7 +97,7 @@ public class AnalyzeFragment extends Fragment {
         cardViewCT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choice = "CT诊断结果";
+                choice = 1;
                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     //未授权，申请授权(从相册选择图片需要读取存储卡的权限)
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, RC_CHOOSE_PHOTO);
@@ -155,69 +136,14 @@ public class AnalyzeFragment extends Fragment {
             case RC_CHOOSE_PHOTO:
                 Uri uri = data.getData();
                 String image_path  = FileUtil.getFilePathByUri(getContext(), uri);
-                Log.d("logaa",image_path);
+                Intent intent = new Intent(getActivity(),AnalyzeDetailActivity.class);
+
+                intent.putExtra("path",image_path);
+                intent.putExtra("choice",choice);
+                intent.putExtra("time",1);
+                startActivity(intent);
 
 
-                if (!TextUtils.isEmpty(image_path )) {
-
-
-                    final File file = new File(image_path );
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            OkHttpClient mOkHttpClient = new OkHttpClient();
-                            MultipartBody.Builder builder = new MultipartBody.Builder();
-                            builder.setType(MultipartBody.FORM)
-                                    .addFormDataPart("picture", "img" + "_" + System.currentTimeMillis() + ".jpg",
-                                            RequestBody.create(MEDIA_TYPE_PNG, file));
-
-
-
-                            RequestBody requestBody = builder.build();
-                            Request.Builder reqBuilder = new Request.Builder();
-
-                            Request request = reqBuilder
-                                    .url("http://47.100.32.161:8080/POST/CTRecord")
-                                    .addHeader("Authorization", User.getInstance().getToken())
-                                    .post(requestBody)
-                                    .build();
-
-                            try{
-
-                                Response response = mOkHttpClient.newCall(request).execute();
-                                Log.d("logaa", "响应码 " + response.code());
-                                String resultValue = response.body().string();
-                                JSONObject jsonObject = new JSONObject(resultValue);
-
-                                Object dataObject = jsonObject.getJSONObject("data");
-                                String s2=dataObject.toString();
-                                JSONObject userDataJson = new JSONObject(s2);
-
-                                String url = userDataJson.getString("picture_url");
-                                String answer =userDataJson.getString("answer");
-
-
-                                Log.d("logaa", "响应体 " + resultValue);
-
-                                Intent intent = new Intent(getActivity(),AnalyzeDetailActivity.class);
-                                intent.putExtra("choice",choice);
-                                intent.putExtra("img",url );
-                                intent.putExtra("answer",answer);
-                                startActivity(intent);
-
-
-                            } catch (Exception e) {
-
-                                e.printStackTrace();
-
-                            }
-
-                        }
-                    }).start();
-
-
-                }
                 break;
         }
 
@@ -227,38 +153,21 @@ public class AnalyzeFragment extends Fragment {
     }
 
 
+    public static final int RC_CHOOSE_PHOTO = 2;
+    private void choosePhoto() {
+        Intent intentToPickPic = new Intent(Intent.ACTION_PICK, null);
+        intentToPickPic.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(intentToPickPic, RC_CHOOSE_PHOTO);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case RC_CHOOSE_PHOTO:   //相册选择照片权限申请返回
+                choosePhoto();
+                break;
+        }
+    }
 
 
 

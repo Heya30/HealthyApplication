@@ -36,6 +36,7 @@ public class HealthyTipFragment extends Fragment {
     private int p;
 
 
+
     public HealthyTipFragment() {
     }
 

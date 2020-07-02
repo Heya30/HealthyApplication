@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.healthapplication.model.HttpCallbackListener;
 import com.example.healthapplication.model.User;
 
 import org.w3c.dom.Text;
@@ -21,7 +22,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ChangeDetailActivity extends AppCompatActivity {
+public class ChangeDetailActivity extends AppCompatActivity implements HttpCallbackListener {
     private TextView titleTv;
     private EditText edit;
     private int type;
@@ -71,12 +72,12 @@ public class ChangeDetailActivity extends AppCompatActivity {
                 else if(type == 1)
                     user.setAge(Integer.parseInt(x));
                 else if(type == 2){
-                    if(x == "男"){
-                        x = "0";
-                        user.setGender(0);
-                    }else {
+                    if(x.equals("男")){
                         x = "1";
                         user.setGender(1);
+                    }else {
+                        x = "2";
+                        user.setGender(2);
                     }
 
                 }
@@ -98,7 +99,7 @@ public class ChangeDetailActivity extends AppCompatActivity {
                 String json = "{\""+ title[type] +"\":" + "\""+ x +"\"}";
                 Log.d("register",json);
                 RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8"), json);
-                Request request = new Request.Builder().url("http://47.100.32.161:8080/UPDATE/user")
+                Request request = new Request.Builder().url(url_base+"/UPDATE/user")
                         .addHeader("Authorization", User.getInstance().getToken())
                         .post(requestBody).build();
                 try {

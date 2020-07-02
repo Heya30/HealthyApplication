@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.healthapplication.R;
+import com.example.healthapplication.model.HttpCallbackListener;
 import com.example.healthapplication.model.JudgeRecord;
 import com.example.healthapplication.model.User;
 
@@ -26,7 +27,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class CtReportAdapter extends RecyclerView.Adapter<CtReportAdapter.MyViewHolder>{
+public class CtReportAdapter extends RecyclerView.Adapter<CtReportAdapter.MyViewHolder> implements HttpCallbackListener {
 
 
     private final Context context;
@@ -115,7 +116,7 @@ public class CtReportAdapter extends RecyclerView.Adapter<CtReportAdapter.MyView
                                     OkHttpClient client = new OkHttpClient();
                                     Log.d("logaa","position"+position);
                                     Log.d("logaa","id"+ datas.get(position).getId());
-                                    String url = "http://47.100.32.161:8080/DELETE/"+type+"?id=" + datas.get(position).getId();
+                                    String url = url_base+"/DELETE/"+type+"?id=" + datas.get(position).getId();
                                     Log.d("logaa",url);
                                     Log.d("logaa","0号id"+datas.get(0).getId() + datas.get(0).getTime());
 
@@ -161,7 +162,7 @@ public class CtReportAdapter extends RecyclerView.Adapter<CtReportAdapter.MyView
 
         //根据位置得到对应的数据
 
-        Glide.with(context).load("http://47.100.32.161:8080" + datas.get(i).getPicture_url()).into(myViewHolder.img);
+        Glide.with(context).load(url_base+ datas.get(i).getPicture_url()).into(myViewHolder.img);
         myViewHolder.timeTv.setText(datas.get(i).getTime());
         myViewHolder.answerTv.setText("分析结果为："+datas.get(i).getAnswer());
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.healthapplication.Adapter.AnswerAdapter;
 import com.example.healthapplication.model.AnswerReport;
+import com.example.healthapplication.model.HttpCallbackListener;
 import com.example.healthapplication.model.User;
 import com.example.healthapplication.MyView.LoadMoreListView;
 import com.google.gson.Gson;
@@ -27,7 +28,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ShowQaRecordActivity extends AppCompatActivity {
+public class ShowQaRecordActivity extends AppCompatActivity implements HttpCallbackListener {
 
     private LoadMoreListView answerLv;
     private AnswerAdapter adapter;
@@ -76,7 +77,7 @@ public class ShowQaRecordActivity extends AppCompatActivity {
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();
-                    String url = "http://47.100.32.161:8080/GET/QARecord?pageNum=" + page;
+                    String url = url_base+"/GET/QARecord?pageNum=" + page;
                     Request request = new Request.Builder().url(url).addHeader("Authorization", User.getInstance().getToken()).build();
                     Response response = client.newCall(request).execute();
                     String data = response.body().string();

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#ffff"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".QuestionActivity">
@@ -32,43 +33,51 @@
             android:textColor="#3F51B5"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="下一步"/>
+            android:text="返回"/>
     </LinearLayout>
-    <LinearLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
     <EditText
-        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
         android:paddingLeft="10dp"
         android:id="@+id/question_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-
+        android:background="@drawable/border"
         android:hint="病情"/>
-    </LinearLayout>
 
     <EditText
         android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
         android:layout_marginLeft="10dp"
+        android:paddingLeft="10dp"
         android:id="@+id/question_department"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:hint="科室"/>
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
-    <EditText
-        android:layout_margin = "10dp"
-        android:id="@+id/question_text"
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="wrap_content"
-        android:hint="详细描述"/>
+        android:layout_height="150dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:text="病情描述:"/>
+        <EditText
+            android:layout_margin = "10dp"
+            android:textSize="16dp"
+            android:id="@+id/question_text"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:hint="详细描述您的病情状况，目前患病时间，病情加重还是减轻，想要获得医生什么帮助等"/>
     </LinearLayout>
 
 
@@ -80,6 +89,7 @@
         <!--android:layout_height="wrap_content" />-->
 
     <Button
+        android:id="@+id/start"
         android:layout_margin="20dp"
         android:background="@color/colorPrimary"
         android:text="开始诊断"

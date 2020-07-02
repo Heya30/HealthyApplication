@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.healthapplication.model.HttpCallbackListener;
 import com.example.healthapplication.model.User;
 import com.example.healthapplication.util.FileUtil;
 
@@ -33,7 +36,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ChangeInfoActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChangeInfoActivity extends AppCompatActivity implements View.OnClickListener, HttpCallbackListener {
 
     private RelativeLayout changeIcon;
     private RelativeLayout changeName;
@@ -51,6 +54,7 @@ public class ChangeInfoActivity extends AppCompatActivity implements View.OnClic
     private String iconPath;
     private User user = User.getInstance();
     private final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+    private final static int COMPLETE = 1000;
 
 
     @Override
@@ -97,7 +101,7 @@ public class ChangeInfoActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initInfo(){
-        Glide.with(this).load("http://47.100.32.161:8080"+user.getAvatar_url()).into(icon);
+        Glide.with(this).load(url_base+user.getAvatar_url()).into(icon);
         name.setText(user.getName());
         age.setText(""+user.getAge());
         gender.setText(user.getGender());
@@ -170,7 +174,9 @@ public class ChangeInfoActivity extends AppCompatActivity implements View.OnClic
             case RC_CHOOSE_PHOTO:
                 Uri uri = data.getData();
                 iconPath = FileUtil.getFilePathByUri(this, uri);
-                Glide.with(this).load(iconPath).into(icon);
+                File file = new File(iconPath);
+                Glide.with(this).load(file).into(icon);
+                sendIconRequest();
 
                 break;
         }
@@ -195,7 +201,7 @@ public class ChangeInfoActivity extends AppCompatActivity implements View.OnClic
                 Request.Builder reqBuilder = new Request.Builder();
 
                 Request request = reqBuilder
-                        .url("http://47.100.32.161:8080/POST/avatar")
+                        .url(url_base+"/POST/avatar")
                         .addHeader("Authorization", User.getInstance().getToken())
                         .post(requestBody)
                         .build();
@@ -207,6 +213,10 @@ public class ChangeInfoActivity extends AppCompatActivity implements View.OnClic
                     JSONObject jsonObject = new JSONObject(data);
                     String url = jsonObject.getString("data");
                     user.setAvatar_url(url);
+
+                    Message message = new Message();
+                    message.what = COMPLETE;
+                    handler.sendMessage(message);
                 } catch (Exception e) {
 
                     e.printStackTrace();
@@ -215,5 +225,20 @@ public class ChangeInfoActivity extends AppCompatActivity implements View.OnClic
 
             }
         }).start();
+
+
     }
+
+    private Handler handler = new Handler(){
+        public void handleMessage(Message message){
+            switch (message.what){
+                case COMPLETE:
+                    Glide.with(ChangeInfoActivity.this).load(url_base + user.getAvatar_url()).into(icon);
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 }

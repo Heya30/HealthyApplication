@@ -21,6 +21,7 @@
         android:layout_gravity="center"
         />
 
+
     <Button
         android:id="@+id/change_icon"
         android:layout_height="wrap_content"
@@ -50,19 +51,28 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
+        <!--<ImageView-->
+        <!--android:id="@+id/iv_register_username_icon"-->
+        <!--android:layout_width="24dp"-->
+        <!--android:layout_height="24dp"-->
+        <!--android:layout_marginLeft="14dp"-->
+        <!--android:contentDescription="@null"-->
+        <!--app:srcCompat="@mipmap/ic_login_username"-->
+        <!--tools:ignore="RtlHardcoded" />-->
+
+        <TextView
             android:id="@+id/iv_register_username_icon"
-            android:layout_width="24dp"
+            android:layout_width="wrap_content"
             android:layout_height="24dp"
+            android:text="用户名"
+            android:textColor="@color/white"
             android:layout_marginLeft="14dp"
-            android:contentDescription="@null"
-            app:srcCompat="@mipmap/ic_login_username"
-            tools:ignore="RtlHardcoded" />
+            android:layout_gravity="center"/>
 
         <View
             android:layout_width="1px"
             android:layout_height="24dp"
-            android:layout_marginLeft="14dp"
+            android:layout_marginLeft="7dp"
             android:layout_marginRight="14dp"
             android:background="@color/login_line_color" />
 
@@ -73,7 +83,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="@string/register_username_hint"
             android:inputType="text"
             android:maxLines="1"
             android:minLines="1"
@@ -107,16 +116,26 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_register_pwd_icon"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_marginLeft="14dp"-->
+            <!--android:layout_marginRight="14dp"-->
+            <!--android:contentDescription="@null"-->
+            <!--app:srcCompat="@mipmap/ic_login_password" />-->
+
+        <TextView
             android:id="@+id/iv_register_pwd_icon"
-            android:layout_width="24dp"
+            android:layout_width="wrap_content"
             android:layout_height="24dp"
+            android:text="年龄"
+            android:textColor="@color/white"
             android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-            android:contentDescription="@null"
-            app:srcCompat="@mipmap/ic_login_password" />
+            android:layout_gravity="center"/>
 
         <View
+            android:layout_marginLeft="15dp"
             android:layout_width="1px"
             android:layout_height="24dp"
             android:background="@color/login_line_color" />
@@ -129,7 +148,6 @@
             android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="年龄"
             android:maxLines="1"
             android:minLines="1"
             android:paddingLeft="4dp"

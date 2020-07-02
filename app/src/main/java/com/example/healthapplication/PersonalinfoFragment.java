@@ -12,12 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.healthapplication.model.HttpCallbackListener;
 import com.example.healthapplication.model.User;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class PersonalinfoFragment extends Fragment implements View.OnClickListener {
+public class PersonalinfoFragment extends Fragment implements View.OnClickListener, HttpCallbackListener {
     private CircleImageView iconView;
     private TextView userNameTv;
     private User user = User.getInstance();
@@ -47,10 +48,8 @@ public class PersonalinfoFragment extends Fragment implements View.OnClickListen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_personalinfo, container, false);
         iconView = view.findViewById(R.id.user_icon);
-        Glide.with(this).load("http://47.100.32.161:8080" + user.getAvatar_url()).into(iconView);
 
         userNameTv = view.findViewById(R.id.username);
-        userNameTv.setText(user.getName());
 
         ctRecord = view.findViewById(R.id.ct_record);
         ctRecord.setOnClickListener(this);
@@ -65,6 +64,12 @@ public class PersonalinfoFragment extends Fragment implements View.OnClickListen
         qaRecord.setOnClickListener(this);
 
         return view;
+
+    }
+
+    private void initInfo(){
+        Glide.with(this).load(url_base + user.getAvatar_url()).into(iconView);
+        userNameTv.setText(user.getName());
 
     }
 
@@ -92,6 +97,13 @@ public class PersonalinfoFragment extends Fragment implements View.OnClickListen
         }
 
 
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        initInfo();
 
     }
 }

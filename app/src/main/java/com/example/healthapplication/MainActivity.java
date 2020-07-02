@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
             RadioButton radioButton = (RadioButton) mTabRadioGroup.getChildAt(position);
 
             radioButton.setChecked(true);
-            radioButton.setTextColor(Color.BLACK);
 
         }
 

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.healthapplication.Adapter.CtReportAdapter;
+import com.example.healthapplication.model.HttpCallbackListener;
 import com.example.healthapplication.model.JudgeRecord;
 import com.example.healthapplication.model.User;
 import com.google.gson.Gson;
@@ -31,7 +32,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ShowCancerReportActivity extends AppCompatActivity {
+public class ShowCancerReportActivity extends AppCompatActivity implements HttpCallbackListener {
     private int page = 0;
     public  static  final int ADDRECORD = 1;
     private ArrayList<JudgeRecord> recordList = new ArrayList();
@@ -87,7 +88,8 @@ public class ShowCancerReportActivity extends AppCompatActivity {
                 Intent intent = new Intent(ShowCancerReportActivity.this,AnalyzeDetailActivity.class);
 
 
-                intent.putExtra("choice","淋巴切片诊断结果");
+                intent.putExtra("choice",0);
+                intent.putExtra("time",2);
                 intent.putExtra("img", judgeRecord.getPicture_url());
                 intent.putExtra("answer", judgeRecord.getAnswer());
                 startActivity(intent);
@@ -111,7 +113,7 @@ public class ShowCancerReportActivity extends AppCompatActivity {
             public void run() {
                 try {
                     OkHttpClient client = new OkHttpClient();
-                    String url = "http://47.100.32.161:8080/GET/CJRecord?pageNum=" + page;
+                    String url = url_base+"/GET/CJRecord?pageNum=" + page;
                     Request request = new Request.Builder().url(url).addHeader("Authorization", User.getInstance().getToken()).build();
                     Response response = client.newCall(request).execute();
                     String data = response.body().string();
