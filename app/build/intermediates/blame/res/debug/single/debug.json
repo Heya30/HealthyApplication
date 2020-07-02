@@ -4,20 +4,20 @@
         "source": "E:\\HealthApplication\\app\\src\\main\\res\\drawable\\covid.png"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
-        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_light.png"
-    },
-    {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_show_motion_spec.xml.flat",
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\3d1e7c66d74c37b83e2f7df7af1e3f45\\res\\animator\\mtrl_fab_show_motion_spec.xml"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main_register_step_one.xml.flat",
-        "source": "E:\\HealthApplication\\app\\src\\main\\res\\layout\\activity_main_register_step_one.xml"
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
+        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_light.png"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main_register_step_one.xml.flat",
+        "source": "E:\\HealthApplication\\app\\src\\main\\res\\layout\\activity_main_register_step_one.xml"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
@@ -36,20 +36,20 @@
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\3d1e7c66d74c37b83e2f7df7af1e3f45\\res\\interpolator-v21\\mtrl_fast_out_linear_in.xml"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "E:\\HealthApplication\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
-    },
-    {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xxhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_spinner.xml.flat",
-        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\color-v23\\abc_tint_spinner.xml"
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "E:\\HealthApplication\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_signup_sms.png.flat",
         "source": "E:\\HealthApplication\\app\\src\\main\\res\\mipmap-xhdpi\\ic_signup_sms.png"
+    },
+    {
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_spinner.xml.flat",
+        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_log.xml.flat",
@@ -144,12 +144,12 @@
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
-        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xxxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
-    },
-    {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_36dp.png.flat",
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png"
+    },
+    {
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
+        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xxxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
@@ -164,12 +164,12 @@
         "source": "E:\\HealthApplication\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_tabs_colored_ripple_color.xml.flat",
-        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\3d1e7c66d74c37b83e2f7df7af1e3f45\\res\\color\\mtrl_tabs_colored_ripple_color.xml"
-    },
-    {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable_icon6.png.flat",
         "source": "E:\\HealthApplication\\app\\src\\main\\res\\drawable\\icon6.png"
+    },
+    {
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_tabs_colored_ripple_color.xml.flat",
+        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\3d1e7c66d74c37b83e2f7df7af1e3f45\\res\\color\\mtrl_tabs_colored_ripple_color.xml"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility.xml.flat",
@@ -316,12 +316,12 @@
         "source": "E:\\HealthApplication\\app\\src\\main\\res\\drawable\\jiantou.jpg"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_personalinfo.xml.flat",
-        "source": "E:\\HealthApplication\\app\\src\\main\\res\\layout\\fragment_personalinfo.xml"
-    },
-    {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_in_top.xml.flat",
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_personalinfo.xml.flat",
+        "source": "E:\\HealthApplication\\app\\src\\main\\res\\layout\\fragment_personalinfo.xml"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
@@ -348,16 +348,16 @@
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\002b949770754b322a425c7de8f43b07\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_tint_default.xml.flat",
-        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\color\\abc_tint_default.xml"
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xxhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xhdpi-v4\\abc_ic_star_black_16dp.png"
     },
     {
-        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\drawable-xxhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
+        "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_tint_default.xml.flat",
+        "source": "C:\\Users\\qinzhu\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\d5d95334c5a43fc62d78645f22c16d94\\res\\color\\abc_tint_default.xml"
     },
     {
         "merged": "E:\\HealthApplication\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_vector_test.xml.flat",
